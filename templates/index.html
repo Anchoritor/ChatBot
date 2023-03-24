@@ -11,23 +11,18 @@
     <div class="container">
         <div class="chat-header">ChatGPT Demo</div>
         <div class="windows">
-            <div id="thought-window" class="window thought-window">
-                <div class="window-header">Thoughts</div>
-                <div id="thoughts" class="window-content"></div>
+            <div id="ai-window" class="window ai-window">
+                <img id="ai-image" src="{{ url_for('static', filename='ai-profile.jpg') }}" alt="AI Profile">
+                <div id="ai-response" class="window-content"></div>
             </div>
-            <div id="dialogue-window" class="window dialogue-window">
-                <div class="window-header">Dialogue</div>
-                <div id="dialogues" class="window-content"></div>
-            </div>
-            <div id="action-window" class="window action-window">
-                <div class="window-header">Actions</div>
-                <div id="actions" class="window-content"></div>
+            <div id="user-window" class="window user-window">
+                <div id="user-response" class="window-content"></div>
             </div>
         </div>
-         <form id="message-form" class="message-form">
-        <img src="{{ url_for('static', filename='user-profile.jpg') }}" class="profile-pic" alt="User Profile">
-        <input type="text" id="message-input" class="message-input" placeholder="Type your message...">
-        <button type="submit" class="send-button">Send</button>
+        <form id="message-form" class="message-form">
+            <img src="{{ url_for('static', filename='user-profile.jpg') }}" class="profile-pic" alt="User Profile">
+            <input type="text" id="message-input" class="message-input" placeholder="Type your message...">
+            <button type="submit" class="send-button">Send</button>
         </form>
     </div>
 </body>

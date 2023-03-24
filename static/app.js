@@ -34,26 +34,8 @@ async function getAIResponse(prompt) {
 }
 
 function addMessage(sender, message) {
-    const dialogue = message.match(/"([^"]*?)"/);
-    const thought = message.match(/\[([^\]]*?)\]/);
-    const action = message.match(/\*([^*]+)\*/);
-
-
-    if (sender === "user") {
-        addMessageToWindow(sender, "dialogues", message);
-    } else {
-        if (thought) {
-            addMessageToWindow(sender, "thoughts", thought[1]);
-        }
-
-        if (dialogue) {
-            addMessageToWindow(sender, "dialogues", dialogue[1]);
-        }
-
-        if (action) {
-            addMessageToWindow(sender, "actions", action[1]);
-        }
-    }
+    const windowId = sender === "user" ? "user-response" : "ai-response";
+    addMessageToWindow(sender, windowId, message);
 }
 
 function addMessageToWindow(sender, windowId, messageText) {
@@ -68,14 +50,7 @@ function addMessageToWindow(sender, windowId, messageText) {
          messageElement.style.alignSelf = "flex-start";
     }
 
-    const profileImage = document.createElement("img");
-    profileImage.src = sender === "user" ? "static/user-profile.jpg" : "static/ai-profile.jpg";
-    profileImage.classList.add("profile-image");
-    if (sender !== "user") {
-        profileImage.classList.add("ai-profile-image");
-    }
-    profileImage.alt = sender === "user" ? "User Profile" : "AI Profile";
-    messageElement.appendChild(profileImage);
+
 
     const messageTextElement = document.createElement("span");
     messageTextElement.textContent = messageText;
